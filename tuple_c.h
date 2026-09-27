@@ -25,7 +25,7 @@
 #define DEF_TUPLE_C(data_t, status_t)   \
 typedef struct {                        \
     data_t      data;                   \
-    status_t    code;                   \ 
-} tuple_c
+    status_t    code;                   \
+} tuple_c                               
 
 #endif
