@@ -33,6 +33,12 @@ my_tuple_type_b h()
     };
 }
 
+struct person {
+    const char *first_name;
+    const char *last_name;
+};
+DEF_CUSTOM_TUPLE_C(struct person, int, tuple_person_t);
+
 int main ()
 {
     tuple_c t = f();
@@ -47,7 +53,7 @@ int main ()
     printf("data: %d\n", tuple_data(t));
     printf("code: %d\n", tuple_code(t));
 
-    printf("-----------------------------\n");
+    printf("\n-----------------------------\n");
 
     my_tuple_type_a myt_a = g();
 
@@ -61,7 +67,7 @@ int main ()
     printf("data: %d\n", tuple_data(myt_a));
     printf("code: %d\n", tuple_code(myt_a));
 
-    printf("-----------------------------\n");
+    printf("\n-----------------------------\n");
 
     my_tuple_type_b myt_b = h();
 
@@ -74,6 +80,20 @@ int main ()
 
     printf("data: %lf\n", tuple_data(myt_b));
     printf("code: %d\n", tuple_code(myt_b));
+
+    printf("\n-----------------------------\n");
+
+    struct person ceo;
+    ceo.first_name = "Tony";
+    ceo.last_name = "Stark";
+
+    tuple_person_t tp = (tuple_person_t) {
+        .data = ceo,
+        .code = 0
+    };
+
+    printf("name: %s %s\n", tuple_data(tp).first_name, tuple_data(tp).last_name);
+    printf("code: %d\n", tuple_code(tp));
 
     return 0;
 }
