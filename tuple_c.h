@@ -22,10 +22,27 @@
 #ifndef _TUPLE_C_H
 #define _TUPLE_C_H
 
-#define DEF_TUPLE_C(data_t, status_t)   \
+/**
+ * Define the tuple-c type used by the library.
+ *
+ * The first argument specifies the data type and the second specifies
+ * the status code type.
+ *
+ * This macro defines a struct named tuple_c containing both values.
+ */
+
+#define DEF_TUPLE_C(data_t, code_t)     \
 typedef struct {                        \
     data_t      data;                   \
-    status_t    code;                   \
-} tuple_c                               
+    code_t      code;                   \
+} tuple_c
+
+/**
+ * When accesing tuple fields you can use direct access
+ * as any other struct or via unwrapper macros to extract
+ * data and code parts.
+ */
+#define tuple_data(t) (t.data)
+#define tuple_code(t) (t.code)
 
 #endif
