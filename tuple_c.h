@@ -24,18 +24,26 @@
 
 /**
  * Define the tuple-c type used by the library.
- *
  * The first argument specifies the data type and the second specifies
- * the status code type.
- *
- * This macro defines a struct named tuple_c containing both values.
+ * the status code type. This macro defines a struct named tuple_c
+ * containing both values.
  */
-
 #define DEF_TUPLE_C(data_t, code_t)     \
 typedef struct {                        \
     data_t      data;                   \
     code_t      code;                   \
 } tuple_c
+
+/**
+ * Define a tuple-c type with a custom name.
+ * Unlike DEF_TUPLE_C, this macro allows the caller to specify the
+ * resulting typedef name through name_t.
+ */
+#define DEF_CUSTOM_TUPLE_C(data_t, code_t, name_t)      \
+typedef struct {                                        \
+    data_t      data;                                   \
+    code_t      code;                                   \
+} name_t
 
 /**
  * When accesing tuple fields you can use direct access
